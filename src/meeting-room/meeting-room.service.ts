@@ -103,13 +103,15 @@ export class MeetingRoomService {
   }
 
   async findById(id: number) {
-    return this.repository.findOneBy({
+    await this.repository.findOneBy({
       id,
     });
+    return 'success';
   }
   async delete(id: number) {
-    this.repository.delete({
+    await this.repository.delete({
       id,
     });
+    return 'success';
   }
 }
