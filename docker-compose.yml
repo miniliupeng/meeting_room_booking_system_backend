@@ -13,7 +13,8 @@ services:
   mysql-container:
     image: mysql
     volumes:
-      - D:\mycode\volume\mysql:/var/lib/mysql
+      # - D:\mycode\volume\mysql:/var/lib/mysql
+      - /root/volume/mysql:/var/lib/mysql
     environment:
       MYSQL_DATABASE: meeting_room_booking_system
       MYSQL_ROOT_PASSWORD: guang
@@ -24,7 +25,8 @@ services:
   redis-container:
     image: redis
     volumes:
-      - D:\mycode\volume\redis:/data
+      # - D:\mycode\volume\redis:/data
+      - /root/volume/redis:/data
     ports:
       - 6379:6379
     networks:
