@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-google-oauth20';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 
-const Agent = new SocksProxyAgent('socks5://127.0.0.1:7890')
+const Agent = new SocksProxyAgent('socks5://127.0.0.1:7890');
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
-  constructor() {
+  constructor(configService: ConfigService) {
     super({
-      clientID:
-        '421300083691-jfho3r7402fk66g18ja98vtjh0277k8c.apps.googleusercontent.com',
-      clientSecret: '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',
-      callbackURL: 'http://localhost:3000/user/callback/google',
+      clientID: configService.get('google_login_client_id'),
+      clientSecret: configService.get('google_login_client_secret'),
+      callbackURL: configService.get('google_login_callback_url'),
       scope: ['email', 'profile'],
     });
     this._oauth2.setAgent(Agent);

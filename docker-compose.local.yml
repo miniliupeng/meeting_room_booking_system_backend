@@ -14,7 +14,7 @@ services:
   mysql-container:
     image: mysql
     volumes:
-      - /root/volume/mysql:/var/lib/mysql
+      - D:\mycode\volume\mysql:/var/lib/mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci # 设置默认字符集
     environment:
       MYSQL_DATABASE: meeting_room_booking_system
@@ -27,7 +27,7 @@ services:
   redis-container:
     image: redis
     volumes:
-      - /root/volume/redis:/data
+      - D:\mycode\volume\redis:/data
     ports:
       - 6379:6379
     restart: always
@@ -39,7 +39,7 @@ services:
       - 9000:9000
       - 9001:9001
     volumes:
-      - /root/volume/minio:/bitnami/minio/data
+      - D:\mycode\volume\minio:/bitnami/minio/data
     environment:
       MINIO_ROOT_USER: guang
       MINIO_ROOT_PASSWORD: dongdong
